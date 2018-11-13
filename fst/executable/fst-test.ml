@@ -4,6 +4,8 @@ open Neural.S.Graph
 open Neural.S.Algodiff
 module N = Dense.Ndarray.S
 
+#zoo "86a1748bbc898f2e42538839edba00e1" (* ImageUtils  *)
+
 let output_dir = "/home/stark/Code/owl-demo/fst/fst_img" 
 
 (** Network Structure *)
@@ -114,14 +116,14 @@ let run ?(style=0) content_img output_img =
 
   convert_arr_to_img result output_img
 
-let _ =
-   let img_name = Sys.argv.(1) in
-   let style    = Sys.argv.(2) |> int_of_string in
+let test () =
+   let img_name = "example.png"  in
+   let style    = "0" |> int_of_string in
    Filename.set_temp_dir_name output_dir;
    let out_img  = Filename.temp_file "fstout" ".png" in
-   run ~style img_name out_img;
    let cmd = Printf.sprintf "convert %s -resize 150x150\\! %s" out_img out_img in
    Sys.command cmd |> ignore;
+   run ~style img_name out_img;
    Unix.chmod out_img 0o775;
    let out_img = Filename.basename out_img in
    Printf.printf "%s" out_img;

@@ -39,7 +39,7 @@ def index():
             new_img_addr = img_addr + '.ppm'
             comm = "convert " + file_addr +  " -resize " + "299x299\\! " + new_img_addr
             os.system(comm)
-            resp = subprocess.check_output(['apps/inceptionv3/inception_classifier', new_img_addr])
+            resp = subprocess.check_output(['executable/inception_classifier', new_img_addr])
             #d = json.loads(resp)
             # Get counter number
             with open('counter.txt', 'r+') as f:

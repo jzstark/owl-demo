@@ -2,45 +2,43 @@
 
 <h2> Demo: Fast Neural Style Transfer </h2>
 <div class="lead">
-<p> <a href="https://gist.github.com/jzstark/6f28d54e69d1a19c1819f52c5b16c1a1"> Neural Style Transfer </a> is the process of using Deep Neural Networks to migrate the semantic content of one image to different styles. <b>Fast Neural Style Transfer</b> (FST) can finish this process in the order of seconds. Introduction an code of this demo can be found in this <a href=https://gist.github.com/jzstark/f937ce439c8adcaea23d42753f487299> Gist</a>. </p>
+<p> <a href="https://gist.github.com/jzstark/6f28d54e69d1a19c1819f52c5b16c1a1"> Neural Style Transfer </a> is the process of using Deep Neural Networks to migrate the semantic content of one image to different styles. <b>Fast Neural Style Transfer</b> (FST) can finish this process in the order of seconds. Introduction and code of this demo can be found in this <a href=https://gist.github.com/jzstark/f937ce439c8adcaea23d42753f487299> Gist</a>. </p>
 </div>
 
 <!-- <div ng-model="count" ng-init="count=0"> -->
 
 <div class="jumbotron">
-  <div class="lead">
+
+  <div class="row">
+    <div class="col-sm-6">
     <!--
     <input id="stylenumber" ng-model="style" ng-change="change()" ng-init="style=1">
     -->
+      <p> Styles </p>
+      <div>
+        <select name="category-group" id="categoryGroup"
+        class="form-control"
+        ng-model="itemSelected"
+        ng-change="onCategoryChange(itemSelected)"
+        ng-options="category.name group by category.group for category in categories">
+        </select>
+        <div ng-init="style_img='images/fs1.jpg'">
+          <img class="img-thumbnail" ng-src="{{style_img}}">
+        </div>
+      </div>
+    </div>
 
-  <p> Styles </p>
-
-  <!-- <div ng-controller="selectController"> -->
-  <div>
-    <select name="category-group" id="categoryGroup"
-      class="form-control"
-      ng-model="itemSelected"
-      ng-change="onCategoryChange(itemSelected)"
-      ng-options="category.name group by category.group for category in categories">
-    </select>
-  </div>
-
-  <div>
-    <tr>
-      <th><img src="images/fs1.jpg" width=180></th>
-      <th><img src="images/fs2.jpg" width=180></th>
-      <th><img src="images/fs3.jpg" width=180></th>
-    </tr>
-    <tr>
-      <th><img src="images/fs4.jpg" width=180></th>
-      <th><img src="images/fs5.jpg" width=180></th>
-      <th><img src="images/fs6.jpg" width=180></th>
-    </tr>
-  </div>
+    <div class="col-sm-6 lead divided_col">
+      <p> Input Image </p>
+      <form action="" class="dropzone" dropzone2="" id="dropzone">
+        <div class="dz-default dz-message">Click to Upload<br>or<br>Drag &amp; Drop </div>
+      </form>
+    </div>
 
   </div>
 </div>
 
+<!--
 <div style="background:transparent !important" class="jumbotron">
     <img src="images/plus_square.png" width=100>
 </div>
@@ -57,6 +55,7 @@
 <div style="background:transparent !important" class="jumbotron">
     <img src="images/equal_square.png" width=100>
 </div>
+-->
 
 <div class="jumbotron">
   <p> Output Image </p>
@@ -72,6 +71,8 @@
 </div>
 
 <div>
+<p>Note that currently due to limited server memory, images are resized when necessary. </p>
 <p> <b>Disclaimer:</b> We do not keep your uploaded image in our server.</p>
 </div>
 </div>
+

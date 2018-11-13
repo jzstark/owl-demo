@@ -84,8 +84,8 @@
 }
 
 .dropzone .dz-preview .dz-image {
-  width: 250px;
-  height: 250px;
+  width: 210px;
+  height: 210px;
 }
 
 .dropzone .dz-preview.dz-error .dz-error-mark,
@@ -164,7 +164,7 @@
 }
 .dropzone {
   border: 1px solid rgba(0,0,0,0.03);
-  min-height: 360px;
+  min-height: 306px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);

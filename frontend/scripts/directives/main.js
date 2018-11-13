@@ -8,14 +8,14 @@ function dropzone() {
       },
       link: function(scope, element, attrs) {
         var config = {
-            //url: 'http://138.68.155.178:5000/upload',
-            url: 'http://localhost:5000/upload',
+            url: 'http://138.68.155.178:5000/upload',
+            //url: 'http://localhost:5000/upload',
             maxFilesize: 100,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
             parallelUploads: 1,
-            thumbnailWidth: 250,
-            thumbnailHeight: 250,
+            thumbnailWidth: 210,
+            thumbnailHeight: 210,
             autoProcessQueue: true
         };
 
@@ -62,14 +62,14 @@ function dropzone2() {
       },
       link: function(scope, element, attrs) {
         var config = {
-            //url: 'http://138.68.155.178:5001/upload',
-            url: 'http://localhost:5001/upload',
+            url: 'http://138.68.155.178:5001/upload',
+            //url: 'http://localhost:5001/upload',
             maxFilesize: 100,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
             parallelUploads: 1,
-            thumbnailWidth: 250,
-            thumbnailHeight: 250,
+            thumbnailWidth: 210,
+            thumbnailHeight: 210,
             autoProcessQueue: true
         };
 
