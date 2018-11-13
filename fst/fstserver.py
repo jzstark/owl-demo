@@ -44,8 +44,8 @@ def index():
 
             img_addr, img_extension = os.path.splitext(file_addr)
             new_img_addr = img_addr + '.ppm'
-            #comm = "convert " + file_addr +  " -resize " + "150x150\\! " + new_img_addr
-            comm = "convert " + file_addr +  " -geometry 155x155^ -gravity center -crop 155x155+0+0 " + new_img_addr
+            comm = "convert " + file_addr +  " -geometry 256x256^ -gravity center -crop 256x256+0+0 " + new_img_addr
+            #comm = "convert " + file_addr +  " -geometry 150x150^ -gravity center -crop 150x150+0+0 " + new_img_addr
             os.system(comm)
             resp = subprocess.check_output(['executable/fst.exe', new_img_addr, s])
             resp = img_dir + resp
@@ -82,8 +82,8 @@ def redraw():
         else:
             img_addr, img_extension = os.path.splitext(file_addr)
             new_img_addr = img_addr + '.ppm'
-            #comm = "convert " + file_addr +  " -resize " + "150x150\\! " + new_img_addr
-            comm = "convert " + file_addr +  " -geometry 155x155^ -gravity center -crop 155x155+0+0 " + new_img_addr
+            comm = "convert " + file_addr +  " -geometry 256x256^ -gravity center -crop 256x256+0+0 " + new_img_addr
+            #comm = "convert " + file_addr +  " -geometry 150x150^ -gravity center -crop 150x150+0+0 " + new_img_addr
             os.system(comm)
             resp = subprocess.check_output(['executable/fst.exe', new_img_addr, s])
             resp = img_dir + resp

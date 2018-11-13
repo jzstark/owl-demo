@@ -5,6 +5,7 @@ open Neural.S.Algodiff
 module N = Dense.Ndarray.S
 
 let output_dir = "/home/stark/Code/owl-demo/fst/fst_img" 
+(* let output_dir = "/tmp" *)
 
 (** Network Structure *)
 
@@ -111,7 +112,6 @@ let run ?(style=0) content_img output_img =
   in
   Graph.load_weights nn style_file;
   let result = Graph.model nn content_img in
-
   convert_arr_to_img result output_img
 
 let _ =

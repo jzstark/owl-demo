@@ -1,5 +1,0 @@
-# Requirements
-
-- Backend: webmachine, lwt, cohttp, Owl
-
-- Frontend: AngularJS, D3.js, DropzonJS

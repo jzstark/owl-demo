@@ -138,6 +138,7 @@ angular.module('owlDemoApp')
           $http({
             method: 'GET',
             url: 'http://138.68.155.178:5001/redraw',
+            //url: 'http://localhost:5001/redraw',
             params: payload})
             .then(
               function mySuccess(response) {
