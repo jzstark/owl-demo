@@ -1,14 +1,19 @@
-B _build/default
-FLG -w -40
-PKG bigarray
-PKG bytes
-PKG ctypes
-PKG ctypes.stubs
-PKG dolog
-PKG eigen
-PKG gsl
-PKG integers
-PKG owl
-PKG plplot
-PKG str
-PKG unix
+B /home/stark/.opam/4.06.0/lib/bytes
+B /home/stark/.opam/4.06.0/lib/ctypes
+B /home/stark/.opam/4.06.0/lib/eigen
+B /home/stark/.opam/4.06.0/lib/integers
+B /home/stark/.opam/4.06.0/lib/ocaml
+B /home/stark/.opam/4.06.0/lib/owl
+B /home/stark/.opam/4.06.0/lib/owl-base
+B /home/stark/.opam/4.06.0/lib/plplot
+B _build/default/.inception_classifier.eobjs
+S /home/stark/.opam/4.06.0/lib/bytes
+S /home/stark/.opam/4.06.0/lib/ctypes
+S /home/stark/.opam/4.06.0/lib/eigen
+S /home/stark/.opam/4.06.0/lib/integers
+S /home/stark/.opam/4.06.0/lib/ocaml
+S /home/stark/.opam/4.06.0/lib/owl
+S /home/stark/.opam/4.06.0/lib/owl-base
+S /home/stark/.opam/4.06.0/lib/plplot
+S .
+FLG -w @a-4-29-40-41-42-44-45-48-58-59-60-40 -strict-sequence -strict-formats -short-paths -keep-locs

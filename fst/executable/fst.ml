@@ -1,10 +1,21 @@
 open Owl
-open Neural.S
-open Neural.S.Graph
-open Neural.S.Algodiff
 module N = Dense.Ndarray.S
+module E = Owl_computation_cpu_engine.Make (N)
+module Compiler = Owl_neural_compiler.Make (E)
 
-let output_dir = "/home/stark/Code/owl-demo/fst/fst_img" 
+module Neural = Compiler.Neural
+module Graph = Compiler.Neural.Graph
+module AD = Compiler.Neural.Algodiff
+module Engine = Compiler.Engine
+
+open Neural
+open Graph
+open AD
+
+let pack x = Engine.pack_arr x |> AD.pack_arr
+let unpack x = AD.unpack_arr x |> Engine.unpack_arr
+
+let output_dir = (Unix.getenv "HOME") ^ "/owl-demo/fst/fst_img" 
 (* let output_dir = "/tmp" *)
 
 (** Network Structure *)
@@ -29,7 +40,6 @@ let residual_block wh nn =
   in
   add [|nn; tmp|]
 
-(* perfectly balanced -- like everything should be. *)
 let make_network h w =
   input [|h;w;3|]
   |> conv2d_layer [|9;9;3;32|] [|1;1|]
@@ -43,7 +53,7 @@ let make_network h w =
   |> conv2d_trans_layer [|3;3;128;64|] [|2;2|]
   |> conv2d_trans_layer [|3;3;64;32|] [|2;2|]
   |> conv2d_layer ~relu:false [|9;9;32;3|] [|1;1|]
-  |> lambda (fun x -> Maths.((tanh x) * (F 150.) + (F 127.5)))
+  |> lambda (fun x -> Maths.((tanh x) * (pack_flt 150.) + (pack_flt 127.5)))
   |> get_network
 
 (* Image helper functions *)
@@ -76,13 +86,13 @@ let get_img_shape img_name =
 
 (* Styles *)
 
-let styles = [|"udnie"; "wave"; "rain"; "muse"; "scream"; "wreck"|]
+let styles = [|"udnie"; "wave"; "rain_princess"; "la_muse"; "scream"; "wreck"|]
 
 let make_style_htb () =
   let h = Hashtbl.create 10 in
   for i = 0 to (Array.length styles - 1) do
     (* weight file: e.g. fst_udnie.weight *)
-    Hashtbl.add h i ("fst_" ^ styles.(i) ^ ".weight")
+    Hashtbl.add h i ("fst_" ^ styles.(i) ^ "_cg.weight")
   done;
   h
 
@@ -98,7 +108,6 @@ let list_styles () =
 
 (* FST service function *)
 let run ?(style=0) content_img output_img =
-
   let w, h = get_img_shape content_img in
   let content_img = convert_img_to_ppm w h content_img in
   let content_img = ImageUtils.(load_ppm content_img |> extend_dim) in
@@ -111,8 +120,9 @@ let run ?(style=0) content_img output_img =
     with Not_found -> failwith "style does not exist; try to run `list_styles ()`"
   in
   Graph.load_weights nn style_file;
-  let result = Graph.model nn content_img in
+  let result = Compiler.model nn (pack content_img) |> unpack in
   convert_arr_to_img result output_img
+
 
 let _ =
    let img_name = Sys.argv.(1) in
@@ -120,8 +130,8 @@ let _ =
    Filename.set_temp_dir_name output_dir;
    let out_img  = Filename.temp_file "fstout" ".png" in
    run ~style img_name out_img;
-   let cmd = Printf.sprintf "convert %s -resize 150x150\\! %s" out_img out_img in
-   Sys.command cmd |> ignore;
+   (* let cmd = Printf.sprintf "convert %s -resize 250x250\\! %s" out_img out_img in
+   Sys.command cmd |> ignore; *)
    Unix.chmod out_img 0o775;
    let out_img = Filename.basename out_img in
    Printf.printf "%s" out_img;

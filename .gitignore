@@ -57,3 +57,12 @@ typings/
 # dotenv environment variables file
 .env
 
+fst_img/
+inception_img/
+
+.merlin
+*.pyc
+
+_build/
+
+*.ppm

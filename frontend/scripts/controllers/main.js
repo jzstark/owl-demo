@@ -10,8 +10,7 @@
 
 
 function fileCtrl ($scope) {
-     //$scope.partialDownloadLink = 'http://localhost:5000/download?filename=';
-     $scope.partialDownloadLink = 'http://138.68.55.178:5000/download?filename=';
+     $scope.partialDownloadLink = 'http://162.209.96.234:5000/download?filename=';
      $scope.filename = '';
 
      $scope.uploadFile = function() {
@@ -27,8 +26,7 @@ angular.module('owlDemoApp')
    .controller('fileCtrl', fileCtrl);
 
 function fileCtrl2 ($scope) {
-     //$scope.partialDownloadLink = 'http://localhost:5001/download?filename=';
-     $scope.partialDownloadLink = 'http://138.68.55.178:5001/download?filename=';
+     $scope.partialDownloadLink = 'http://162.209.96.234:5001/download?filename=';
      $scope.filename = '';
 
      $scope.uploadFile = function() {
@@ -57,7 +55,7 @@ angular.module('owlDemoApp')
     $scope.salesData= [];
     $scope.processed = 0;
 
-    $http.get('http://138.68.155.178:5000/counter')
+    $http.get('http://162.209.96.234:5000/counter')
     //$http.get('http://localhost:5000/counter')
       .then(
         function (data) {
@@ -95,10 +93,9 @@ angular.module('owlDemoApp')
 
 angular.module('owlDemoApp')
   .controller('SalesController2', ['$scope', '$interval', '$http', function($scope, $interval, $http){
-    //$scope.image = [];
     $scope.processed = 0;
 
-    $http.get('http://138.68.155.178:5001/counter')
+    $http.get('http://162.209.96.234:5001/counter')
     //$http.get('http://localhost:5001/counter')
       .then(
         function (data) {
@@ -137,8 +134,7 @@ angular.module('owlDemoApp')
   	      };
           $http({
             method: 'GET',
-            url: 'http://138.68.155.178:5001/redraw',
-            //url: 'http://localhost:5001/redraw',
+            url: 'http://162.209.96.234:5001/redraw',
             params: payload})
             .then(
               function mySuccess(response) {
