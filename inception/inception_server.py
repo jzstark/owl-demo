@@ -38,7 +38,7 @@ def index():
 
             img_addr, img_extension = os.path.splitext(file_addr)
             new_img_addr = img_addr + '.ppm'
-            comm = "convert " + file_addr +  " -resize " + "299x299\\! " + new_img_addr
+            comm = "convert " + file_addr +  " -resize " + "250x250\\! " + new_img_addr
             os.system(comm)
             resp = subprocess.check_output(['executable/inception_classifier.exe', new_img_addr])
             #d = json.loads(resp)

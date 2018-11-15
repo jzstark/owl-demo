@@ -6,7 +6,7 @@ open Neural.S.Graph
 
 let channel_last = true (* The same in Keras Conv layer *)
 let include_top = true  (* if false, no final Dense layer *)
-let img_size = 299      (* include_top = true means img_size have to be exact 299 *)
+let img_size = 250      (* include_top = true means img_size have to be exact 299 *)
 
 let weight_file = "inception_owl.weight"
 
@@ -148,7 +148,7 @@ let to_json ?(top=5) preds =
 
 let _ = 
   let img_name = Sys.argv.(1) in
-  let nn = make_network 299 in
+  let nn = make_network img_size in
   Graph.init nn;
   Graph.load_weights nn weight_file;
   let img_ppm = get_input_data img_name in 

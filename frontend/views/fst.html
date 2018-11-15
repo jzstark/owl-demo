@@ -3,6 +3,7 @@
 <h2> Demo: Fast Neural Style Transfer </h2>
 <div class="lead">
 <p> <a href="https://gist.github.com/jzstark/6f28d54e69d1a19c1819f52c5b16c1a1"> Neural Style Transfer </a> is the process of using Deep Neural Networks to migrate the semantic content of one image to different styles. <b>Fast Neural Style Transfer</b> (FST) can finish this process in the order of seconds. Introduction and code of this demo can be found in this <a href=https://gist.github.com/jzstark/f937ce439c8adcaea23d42753f487299> Gist</a>. </p>
+<p> Total number of processed images: {{processed}}. </p> 
 </div>
 
 <!-- <div ng-model="count" ng-init="count=0"> -->
@@ -64,14 +65,17 @@
   </div>
 </div>
 
+<div class="lead">
+	<p> FST can be used to render videos in a frame-by-frame manner. This <a href="https://www.youtube.com/watch?v=cFOM-JnyJv4&list=PLGt9zVony2zVSiHZb8kwwXfcmCuOH2W-H"> Youtube list</a> below shows examples of applying Style Transfer to video clips. </p>
+</div>
+
 <div class="jumbotron">
-  <div class="lead">
-  Total number of processed images: {{processed}}
-  </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLGt9zVony2zVSiHZb8kwwXfcmCuOH2W-H" frameborder="0" allow="accelerometer; autoplay; loop; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 </div>
 
 <div>
-<p>Note that currently due to limited server memory, images are resized when necessary. </p>
+<p>Note that currently due to limited computation power, images are resized when necessary. </p>
 <p> <b>Disclaimer:</b> We do not keep your uploaded image in our server.</p>
 </div>
 </div>
