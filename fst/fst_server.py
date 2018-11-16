@@ -16,14 +16,14 @@ app.config['UPLOAD_FOLDER'] = img_dir
 
 cache_dict = "current_img_cache.p"
 
-h = 200
-w = 200
+h = 250
+w = 250
 
 @app.route('/')
 def hello_world():
     return 'Hello, World! Hello, Shiroe!\n'
 
-ALLOWED_EXTENSIONS = set(['ppm', 'png', 'jpg', 'jpeg', 'gif', 'PNG'])
+ALLOWED_EXTENSIONS = set(['ppm', 'png', 'jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'PNG', 'svg'])
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -49,7 +49,15 @@ def index():
 
             img_addr, img_extension = os.path.splitext(file_addr)
             new_img_addr = img_addr + '.ppm'
-            comm = "convert %s -geometry %dx%d^ -gravity center -crop %dx%d+0+0 %s" % (file_addr, h, w, h, w, new_img_addr)
+            # comm = "convert %s -geometry %dx%d^ -gravity center -crop %dx%d+0+0 %s" % (file_addr, h, w, h, w, new_img_addr)
+            size = subprocess.check_output(['identify', '-format', '%w,%h', file_addr])
+            size = size.split(',')
+            img_w = int(size[0])
+            img_h = int(size[1])
+            if (img_w < img_h) :
+                comm = "convert %s -geometry %dx %s" % (file_addr, w, new_img_addr)
+            else:
+                comm = "convert %s -geometry x%d %s" % (file_addr, h, new_img_addr)
             os.system(comm)
             resp = subprocess.check_output(['executable/fst.exe', new_img_addr, s])
             # Remove log info 
@@ -81,6 +89,7 @@ def redraw():
     s = request.args.get('style', '')
     if fname:
         filename = secure_filename(fname)
+        print filename
         file_addr = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
         cache = pickle.load(open(cache_dict, "rb"))
@@ -90,7 +99,14 @@ def redraw():
             img_addr, img_extension = os.path.splitext(file_addr)
             new_img_addr = img_addr + '.ppm'
             # comm = "convert " + file_addr +  " -geometry 256x256^ -gravity center -crop 256x256+0+0 " + new_img_addr
-            comm = "convert %s -geometry %dx%d^ -gravity center -crop %dx%d+0+0 %s" % (file_addr, h, w, h, w, new_img_addr)
+            size = subprocess.check_output(['identify', '-format', '%w,%h', file_addr])
+            size = size.split(',')
+            img_w = int(size[0])
+            img_h = int(size[1])
+            if (img_w < img_h) :
+                comm = "convert %s -geometry %dx %s" % (file_addr, w, new_img_addr)
+            else:
+                comm = "convert %s -geometry x%d %s" % (file_addr, h, new_img_addr)
             os.system(comm)
             resp = subprocess.check_output(['executable/fst.exe', new_img_addr, s])
             # Remove log info 

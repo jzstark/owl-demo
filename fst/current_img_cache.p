@@ -1,9 +1,9 @@
 (dp0
-S'fst_img/slider1.jpg'
+S'fst_img/P8243058.JPG'
 p1
 (dp2
 V0
 p3
-S'fst_img/fstout1e2bd8.png'
+S'fst_img/fstoutf909c0.png'
 p4
 ss.

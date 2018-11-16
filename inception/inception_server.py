@@ -14,7 +14,7 @@ app.config['UPLOAD_FOLDER'] = 'inception_img/'
 def hello_world():
     return 'Hello, World!'
 
-ALLOWED_EXTENSIONS = set(['ppm', 'png', 'jpg', 'jpeg', 'gif', 'PNG'])
+ALLOWED_EXTENSIONS = set(['ppm', 'png', 'jpg', 'jpeg', 'gif', 'JPG', 'PNG', 'JPEG', 'svg'])
 
 def allowed_file(filename):
     return '.' in filename and \
