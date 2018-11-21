@@ -1,16 +1,38 @@
-<div >
+<div ng-controller="SalesController3">
 
 <h2> Demo: Image Segmentation with Mask R-CNN  </h2>
 <div class="lead">
 <p>
 
 This is an implementation of the Mask R-CNN network using Owl. This network can be used to perform object detection, segmentation and classification. The implementation is based on <a href="https://arxiv.org/abs/1703.06870"> this paper </a>, and ported from <a href="https://github.com/matterport/Mask_RCNN"> this Keras implementation </a>. The code used in the demo can be found in this <a href="https://github.com/owlbarn/owl-mask-rcnn"> Github Repo </a>.
-
 </p>
+
+<p> Belows shows one example of applying Mask R-CNN to an image of street view. You can also upload your own image to be processed. </p>   
+
+<p> Total number of processed images: {{processed}}. </p> 
+
 </div>
 
 <div class="jumbotron">
-   <img src="images/mrcnn_example.jpg" width=582 alt="mrcnn example"> 
+  <!-- <img src="images/mrcnn_example.jpg" width=582 alt="mrcnn example"> -->
+  <div class="lead">
+    <p> Input Image </p>
+    <form action="" class="dropzone" dropzone3="" id="dropzone">
+      <div class="dz-default dz-message">Click to Upload<br>or<br>Drag &amp; Drop </div>
+    </form>
+  </div>
+</div>
+
+<div class="jumbotron">
+<p> Output Image </p>
+  <div class="lead">
+    <img ng-src="{{image}}" style="max-width: 100%">
+  </div>
+</div>
+
+
+<div class="lead">
+  <p> This model can be used to render videos in a frame-by-frame manner. The video below shows one example of applying image segmentation on a video clip. </p>
 </div>
 
 <div class="jumbotron">
@@ -19,5 +41,5 @@ This is an implementation of the Mask R-CNN network using Owl. This network can 
 
 
 <div>
-    <p> <b>Note:</b> an online image segmentation demo will soon be added. </p>
+    <p> <b>Disclaimer:</b> We do not keep your uploaded image in our server.</p>
 </div>

@@ -41,6 +41,23 @@ function fileCtrl2 ($scope) {
 angular.module('owlDemoApp')
    .controller('fileCtrl2', fileCtrl2);
 
+function fileCtrl3 ($scope) {
+     $scope.partialDownloadLink = 'http://162.209.96.234:5002/download?filename=';
+     $scope.filename = '';
+
+     $scope.uploadFile = function() {
+         $scope.processDropzone();
+     };
+
+     $scope.reset = function() {
+         $scope.resetDropzone();
+     };
+ }
+
+angular.module('owlDemoApp')
+   .controller('fileCtrl3', fileCtrl3);
+
+
 angular.module('owlDemoApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
@@ -147,3 +164,29 @@ angular.module('owlDemoApp')
         }
     };
 }]);
+
+
+
+angular.module('owlDemoApp')
+  .controller('SalesController3', ['$scope', '$interval', '$http', function($scope, $interval, $http){
+    $scope.processed = 0;
+    $scope.image = "images/mrcnn_example.jpg";
+
+    $http.get('http://162.209.96.234:5002/counter')
+      .then(
+        function (data) {
+          $scope.processed = data.data;
+        },
+        function (error){}
+      );
+
+    $scope.$on('clicked-from-directive3', function(event, data){
+      $scope.$apply(function() {
+        $scope.processed = data[0];
+        $scope.image = data[1];
+      });
+    });
+}]);
+
+
+

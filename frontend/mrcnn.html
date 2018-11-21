@@ -8,7 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -36,26 +36,17 @@
               <span class="icon-bar"></span>
             </button>
 
-	    <a class="navbar-brand" href="http://ocaml.xyz">Owl Numerical</a>
+	    <a class="navbar-brand" href="http://ocaml.xyz/">Owl Numerical</a>
           </div>
 
           <div class="collapsed navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <!--
-              <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Demo
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="index.html">Google InceptionV3</a></li>
-                <li><a href="neuraltrans.html">Style Transfer</a></li>
-              </ul>
-            </li> -->
 	      <li><a href="index.html">InceptionV3</a></li>
               <li><a href="mrcnn.html">Mask R-CNN</a></li>
               <li><a href="neuraltrans.html">NST</a></li>
               <li><a href="fst.html">FST</a></li>
-              <li><a href="about.html">Tech Reports</a></li>
+              <li><a ng-href="about.html">Tech Reports</a></li>
               <li><a href="zoo.html">Zoo</a></li>
             </ul>
 
@@ -64,26 +55,31 @@
       </div>
     </div>
 
-    <div id="image" class="container">
-    <div ng-include="'views/mrcnn.html'" ></div>
+    <div id="fst" class="container">
+    <div ng-include="'views/mrcnn.html'" ng-controller="fileCtrl3" ng-cloak></div>
     </div>
 
     <div class="footer">
       <div class="container">
         Contact us:
-        <a href=https://github.com/ryanrhymes/owl>Github</a>,
+        <a href=https://github.com/owlbarn/owl>Github</a>,
         <a href=mailto:liang.wang@cl.cam.ac.uk> Email</a>,
         <a href=https://join.slack.com/t/owl-dev-team/shared_invite/enQtMjQ3OTM1MDY4MDIwLTA3MmMyMmQ5Y2U0NjJiNjI0NzFhZDAwNGFhODBmMTk4N2ZmNDExYjZiMzI2N2M1MGNiMTUyYTQ5MTAzZjliZDI> Slack Channel</a>.
       </div>
     </div>
 
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script srd="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script srd="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"
     ></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/main.js"></script>
@@ -92,15 +88,14 @@
     <script type="text/javascript">
       Dropzone.autoDiscover = false;
     </script>
-
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123353217-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-  	function gtag(){dataLayer.push(arguments);}
-  	gtag('js', new Date());
-  	gtag('config', 'UA-123353217-1');
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-123353217-1');
     </script>
-
 </body>
 </html>

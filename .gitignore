@@ -59,6 +59,7 @@ typings/
 
 fst_img/
 inception_img/
+mrcnn_img/
 
 .merlin
 *.pyc
@@ -66,3 +67,5 @@ inception_img/
 _build/
 
 *.ppm
+*.weight
+*.weights

@@ -16,8 +16,8 @@ app.config['UPLOAD_FOLDER'] = img_dir
 
 cache_dict = "current_img_cache.p"
 
-h = 250
-w = 250
+h = 325
+w = 325
 
 @app.route('/')
 def hello_world():
