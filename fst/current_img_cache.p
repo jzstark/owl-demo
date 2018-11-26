@@ -1,9 +1,9 @@
 (dp0
-S'fst_img/example.png'
+S'fst_img/104419379_lionelmessi_nurphotoviagetty.jpg'
 p1
 (dp2
-V0
+V1
 p3
-S'fst_img/fstout8920eb.png'
+S'fst_img/fstout464f09.png'
 p4
 ss.

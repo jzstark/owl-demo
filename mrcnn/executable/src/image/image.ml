@@ -50,11 +50,16 @@ let img_of_ndarray arr =
 
 
 (* Converts a Camlimages' image to an Ndarray. *)
-let camlimg_to_ndarray img =
+(* let camlimg_to_ndarray img =  
   let w, h = Images.size img in
   let img_rgb = match img with
     | Rgb24 x -> x
-    | _ -> invalid_arg "Image.camlimg_to_ndarray: unsupported image format" in
+    | Rgba32 _ -> invalid_arg "fuck image : rgba32" 
+    | Cmyk32 _ -> invalid_arg "fuck image : cmyk32"
+    | Index8 _ -> invalid_arg "fuck image : index8"
+    | Index16 _ -> invalid_arg "fuck image : index16"
+    (* | _ -> invalid_arg "Image.camlimg_to_ndarray: unsupported image format" in *)
+  in
   let res = N.empty [|h; w; 3|] in
   for i = 0 to h - 1 do
     for j = 0 to w - 1 do
@@ -65,11 +70,17 @@ let camlimg_to_ndarray img =
     done;
   done;
   res
+*)
 
 
 let img_to_ndarray src =
-  let img = Images.load src [] in
-  camlimg_to_ndarray img
+  let prefix = Filename.(src |> basename |> remove_extension) in 
+  let tmp_img = Filename.temp_file prefix ".ppm" in 
+  let cmd = Printf.sprintf "convert %s %s" src tmp_img in 
+  let _ = Sys.command cmd in
+  ImageUtils.load_ppm tmp_img
+  (* let img = Images.load src [] in
+  camlimg_to_ndarray img *)
 
 
 let resize ?h ?w src =
@@ -84,10 +95,22 @@ let resize ?h ?w src =
     min scale_w scale_h in
   let window_w = int_of_float (Maths.round (scale *. (float img_w))) in
   let window_h = int_of_float (Maths.round (scale *. (float img_h))) in
-  let img = match img with
+
+  let prefix = Filename.(src |> basename |> remove_extension) in 
+  let tmp_img = Filename.temp_file prefix ".ppm" in 
+  let cmd = Printf.sprintf "convert -resize %dx%d\\! %s %s" window_w window_h src tmp_img in 
+  let _ = Sys.command cmd in 
+  let img_arr = ImageUtils.load_ppm tmp_img in
+
+  (* let img = match img with
     | Rgb24 map -> Rgb24.resize None map window_w window_h
-    | _ -> invalid_arg "Image.resize: unsupported image format" in
-  let img_arr = camlimg_to_ndarray (Rgb24 img) in
+    | Rgba32 _ -> invalid_arg "shit image : rgba32" 
+    | Cmyk32 _ -> invalid_arg "shit image : cmyk32"
+    | Index8 _ -> invalid_arg "shit image : index8"
+    | Index16 _ -> invalid_arg "shit image : index16"
+    | _ -> invalid_arg "Image.resize: unsupported image format" in 
+  let img_arr = camlimg_to_ndarray (Rgb24 img) in *)
+  
   let top_pad, left_pad = (h - window_h) / 2, (w - window_w) / 2 in
   let bottom_pad, right_pad = h - window_h - top_pad, w - window_w - left_pad in
   let padding = [[top_pad; bottom_pad]; [left_pad; right_pad]; [0; 0]] in

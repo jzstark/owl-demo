@@ -8,7 +8,7 @@ let name = "Mask R-CNN"
 (* Images are resized to a square with this side length. The construction of
  * the network depends on this value. Higher means more accurate detections but
  * needs more time and memory. Must be divisible by 64. *)
-let image_dim = ref 768
+let image_dim = ref 512 (* 768 *)
 
 let get_image_size () = !image_dim
 let set_image_size size = image_dim := size

@@ -6,7 +6,7 @@ module C = Configuration
 
 (* Script used for the web demo of Mask R-CNN. *)
 
-let () = C.set_image_size 512 (* 768 *)
+let () = C.set_image_size 256 (* 768 *)
 
 
 let () =
