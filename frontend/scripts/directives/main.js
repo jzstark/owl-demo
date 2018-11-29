@@ -11,6 +11,7 @@ function dropzone() {
             url: 'http://162.209.96.234:5000/upload',
             //url: 'http://localhost:5000/upload',
             maxFilesize: 100,
+            timeout: 30000, // 30 sec
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
             parallelUploads: 1,
@@ -63,6 +64,7 @@ function dropzone2() {
       link: function(scope, element, attrs) {
         var config = {
             url: 'http://162.209.96.234:5001/upload',
+            timeout: 60000, // 60 sec
             maxFilesize: 100,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
@@ -121,6 +123,7 @@ function dropzone3() {
       link: function(scope, element, attrs) {
         var config = {
             url: 'http://162.209.96.234:5002/upload',
+            timeout: 60000, // 60 sec
             maxFilesize: 100,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,

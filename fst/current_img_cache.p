@@ -1,9 +1,9 @@
 (dp0
-S'fst_img/104419379_lionelmessi_nurphotoviagetty.jpg'
+S'fst_img/Cecil-the-lion-cecil-the-lion-38751178-620-349.jpg'
 p1
 (dp2
-V1
+V0
 p3
-S'fst_img/fstout464f09.png'
+S'fst_img/fstout412963.png'
 p4
 ss.

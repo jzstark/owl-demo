@@ -45,15 +45,17 @@ def index():
             file_addr = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             f.save(file_addr)
 
-            if base_ext[1] != '.png' or base_ext[1] != '.PNG':
-                png_file_addr = hashed_base + '.png'
-                png_file_addr = os.path.join(app.config['UPLOAD_FOLDER'], png_file_addr)
-                try:
-                    subprocess.check_output(["convert", file_addr, png_file_addr])
-                    file_addr = png_file_addr
-                except subprocess.CalledProcessError as e:
-                    print(e.output)
-                    raise
+            #if base_ext[1] != '.png' or base_ext[1] != '.PNG':
+            png_file_addr = hashed_base + '.png'
+            png_file_addr = os.path.join(app.config['UPLOAD_FOLDER'], png_file_addr)
+            try:
+                # Change the format to png, and reszie to no larger than 1800 if necessary
+                # Note that however, the "long" image of size, e.g., 1799 x 100000 might still be unreszied; but in that case, bite the dust you evil S.O.B, this is just a  demo site that has pitfalls everywhere, so save your testing somewhere else. 
+                subprocess.check_output(["convert", file_addr, "-resize", "1800x>", "-auto-orient", png_file_addr])
+                file_addr = png_file_addr
+            except subprocess.CalledProcessError as e:
+                print(e.output)
+                raise
                 
             try:
                 resp = subprocess.check_output(['executable/mrcnn_demo.exe', file_addr])
